@@ -1,0 +1,30 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/php
+{
+	"name": "PHP",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	"image": "mcr.microsoft.com/devcontainers/php:1-8.2-bullseye",
+
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	// "features": {},
+
+	// Configure tool-specific properties.
+	// "customizations": {},
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	"forwardPorts": [
+		8080,
+		8000
+	],
+	"features": {
+		"ghcr.io/devcontainers/features/php:1": {},
+		"ghcr.io/warrenbuckley/codespace-features/sqlite:1": {}
+	},
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	"postCreateCommand":
+		"cd /workspaces/adminer && echo 'CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT); INSERT INTO users (name) VALUES (\"Alice\");' > init.sql && sqlite3 my_database.db < init.sql && make initialize && echo -e '\n====================\n Access http://localhost:8000/adminer/sqlite.php?sqlite=&username=&db=%2Fworkspaces%2Fadminer%2Fmy_database.db&sql=SELECT%20*%20FROM%20users with password 'YOUR_PASSWORD_HERE' and then login and try to save query\n====================\n' && make server"
+
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "root"
+}
