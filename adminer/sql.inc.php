@@ -74,7 +74,7 @@ if (!$error && $_POST) {
 		$total_start = microtime(true);
 		$adminer_export = get_settings("adminer_import"); // this doesn't offer SQL export so we match the import/export style at select
 		$dump_format = adminer()->dumpFormat();
-		// unset($dump_format["sql"]);
+		
 
 		while ($query != "") {
 			if (!$offset && preg_match("~^$space*+DELIMITER\\s+(\\S+)~i", $query, $match)) {
