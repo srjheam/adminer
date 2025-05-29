@@ -10,5 +10,3 @@
 /vendor/
 adminer-plugins/
 adminer-plugins.php
-*.sql
-*.db
